@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,6 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <!-- Icon link -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- CSS link -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     <style type="text/css">
     	.material-icons.md-48 { font-size: 48px; }
     	.material-icons.md-24 { font-size: 24px; }
@@ -18,37 +21,12 @@
   </head>
   <body>
   	
-  	<nav class="navbar navbar-expand-md navbar-light bg-dark">
-  		<a class="navbar-brend"><i class="material-icons text-success md-48">store</i></a>
-  		<button class="navbar-toggler bg-light" data-toggle="collapse" data-target="#navbar"><span class="navbar-toggler-icon"></span></button>
-  		<div id="navbar" class="collapse navbar-collapse justify-content-between">
-	  		<ul class="navbar-nav">
-	  			<li class="nav-item dropdown"><a class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle" data-toggle="dropdown" href="#">Категории</a>
-	  				<div class="dropdown-menu">
-	  					<a class="dropdown-item" href="#">Категория1</a>
-	  					<a class="dropdown-item" href="#">Категория2</a>
-	  					<a class="dropdown-item" href="#">Категория3</a>
-	  					<a class="dropdown-item" href="#">Категория4</a>
-	  					<a class="dropdown-item" href="#">Категория5</a>
-	  				</div>
-	  			</li>
-	  			<li class="nav-item"><a class="nav-link text-light text-uppercase font-weight-bold px-3" href="#">Контакты</a></li>
-	  			<li class="nav-item"><a class="nav-link text-light text-uppercase font-weight-bold px-3" href="#">О нас</a></li>
-	  		</ul>
-
-	  		<form class="form-inline">
-	  			<div class="input-group">
-	  				<input type="text" placeholder="Search">
-	  				<div>
-	  					<button class="btn-success"><i class="material-icons md-24">search</i></button>
-	  				</div>
-	  			</div>
-	  		</form>
-	  	</div>
-  	</nav>
+  	{% include 'shop/navbar.html' %}
 
 	{% block content %}
 	{% endblock %}
+
+	{% include 'shop/footer.html' %}
 
     <!-- Optional JavaScript; choose one of the two! -->
 
