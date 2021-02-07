@@ -1,16 +1,15 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-dark">
-  		<a class="navbar-brend"><i class="material-icons text-success md-48">store</i></a>
+  		<a href="/" class="navbar-brand"><i class="material-icons text-success md-48">store</i></a>
   		<button class="navbar-toggler bg-light" data-toggle="collapse" data-target="#navbar"><span class="navbar-toggler-icon"></span></button>
   		<div id="navbar" class="collapse navbar-collapse justify-content-between">
 	  		<ul class="navbar-nav">
 	  			<li class="nav-item dropdown"><a class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle" data-toggle="dropdown" href="#">Категории</a>
 	  				<div class="dropdown-menu">
-	  					<a class="dropdown-item" href="#">Категория1</a>
-	  					<a class="dropdown-item" href="#">Категория2</a>
-	  					<a class="dropdown-item" href="#">Категория3</a>
-	  					<a class="dropdown-item" href="#">Категория4</a>
-	  					<a class="dropdown-item" href="#">Категория5</a>
+	  					<a class="dropdown-item" href="{% url 'home' %}">Все товары</a>
+	  					{% for category in links %}
+	  					<a class="dropdown-item" href="{{category.get_url}}">{{category.name}}</a>
+	  					{% endfor %}
 	  				</div>
 	  			</li>
 	  			<li class="nav-item"><a class="nav-link text-light text-uppercase font-weight-bold px-3" href="#">Контакты</a></li>
