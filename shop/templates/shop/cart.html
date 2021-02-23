@@ -7,12 +7,97 @@
 {% endblock %}
 
 {% block content %}
-	<div class="text-content">
+
+	{% if not cart_items %}
+	<div class="text-center">
 		<br>
-		<div class="text-center product_title">
-			Корзина
+		<h1 class="text-center product_title">
+			Корзина пуста
+		</h1>
+		<br>
+		<p class="text-center">
+			Нажми <a href="{% url 'home' %}">здесь</a> для перехода к товарам
+		</p>
+	{% else %}
+	</div>
+	<div class="row mx-auto">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+			<table class="table cart-table">
+				<thead class="cart-thead">
+					<tr>
+						<th colspan="4">
+							Ваши товары
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for cart_item in cart_items %}
+				<tr>
+					<td>
+						<a href="{{cart_item.product.get_url}}"><img src="{{cart_item.product.image.url}}" width="100" height="100"></a>
+					</td>
+					<td class="text-left">
+						Наименование товара
+						{{cart_item.product.name}}
+						<br>
+						Артикул товара
+						SKU: {{cart_item.product.id}}
+						<br>
+						Цена товара: {{cart_item.product.price}}
+						<br>
+						Количество: {{cart_item.quantity}} * {{cart_item.product.price}}
+					</td>
+					<td>
+						${{cart_item.sub_total}}
+					</td>
+					{% if cart_item.quantity < cart_item.product.stock %}
+					<td>
+						<a href="{% url 'add_cart' cart_item.product.id %}"><i class="material-icons cart-icon">add_shopping_cart</i></a>
+						<a href=""><i class="material-icons cart-icon">remove_circle_outline</i></a>
+						<a href=""><i class="material-icons cart-icon">delete</i></a>
+					</td>
+					{% else %}
+					<td>
+						<a href=""><i class="material-icons cart-icon">remove_circle_outline</i></a>
+						<a href=""><i class="material-icons cart-icon">delete</i></a>
+					</td>
+					{% endif %}
+				</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+			<table class="table cart-table">
+				<thead class="cart-thead">
+					<tr>
+						<th colspan="4">
+							Проверьте данные о покупке
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>
+						Пожалуйста проверьте вашу корзину до оплаты
+					</td>
+				</tr>
+				<tr class="text-left">
+					<td>
+						Ваш полный счет: <strong>${{total}}</strong>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+			<div class="mx-auto">
+				<a href="{% url 'home' %}" style="text-decoration: none">
+					<buttom type="buttom" class="btn btn-lg btn-block bg-dark text-white">
+						Назад к товарам
+					</buttom>
+				</a>
+			</div>
 		</div>
 	</div>
-
+	{% endif %}
 
 {% endblock %}
